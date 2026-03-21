@@ -42,15 +42,30 @@ function createWindow(): BrowserWindow {
     win.loadFile(join(__dirname, '../renderer/index.html'))
   }
 
-  // Push state updates to renderer
+  // Push state updates to renderer + update tray health
+  const updateTrayHealth = () => {
+    const obsOk = obsService.getState().status === 'connected'
+    const vtsOk = vtsService.getState().status === 'connected'
+    const netOk = netCheck.getState().status === 'connected'
+    const tracking = vtsService.getState().faceTracking.faceDetected
+    const audioOk = obsService.getState().audioInputs.some(a => !a.muted)
+
+    if (obsOk && vtsOk && netOk && tracking && audioOk) trayManager.updateHealth('green')
+    else if (!obsOk || !vtsOk) trayManager.updateHealth('red')
+    else trayManager.updateHealth('yellow')
+  }
+
   obsService.onStateChange((state) => {
     win.webContents.send('obs:state-update', state)
+    updateTrayHealth()
   })
   vtsService.onStateChange((state) => {
     win.webContents.send('vts:state-update', state)
+    updateTrayHealth()
   })
   netCheck.onStateChange((state) => {
     win.webContents.send('network:state-update', state)
+    updateTrayHealth()
   })
 
   return win
