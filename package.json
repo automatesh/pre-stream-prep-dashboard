@@ -1,0 +1,42 @@
+{
+  "name": "pre-stream-prep-dashboard",
+  "version": "0.1.0",
+  "description": "VTuber Stream Prep Dashboard — local desktop app for pre-stream validation",
+  "main": "./out/main/index.js",
+  "scripts": {
+    "dev": "electron-vite dev",
+    "build": "electron-vite build",
+    "preview": "electron-vite preview",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "lint": "eslint . --ext .ts,.tsx"
+  },
+  "keywords": [
+    "vtuber",
+    "obs",
+    "vtubestudio",
+    "streaming",
+    "electron"
+  ],
+  "author": "",
+  "license": "MIT",
+  "type": "module",
+  "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "@types/node": "^25.5.0",
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^5.2.0",
+    "electron": "^41.0.3",
+    "electron-vite": "^5.0.0",
+    "eslint": "^10.1.0",
+    "tailwindcss": "^4.2.2",
+    "typescript": "^5.9.3",
+    "vite": "^7.3.1",
+    "vitest": "^4.1.0"
+  },
+  "dependencies": {
+    "react": "^19.2.4",
+    "react-dom": "^19.2.4"
+  }
+}
