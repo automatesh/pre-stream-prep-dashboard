@@ -50,3 +50,11 @@ export function getRunsheet(): RunsheetSegment[] {
 export function saveRunsheet(segments: RunsheetSegment[]): void {
   writeJson('runsheet.json', segments)
 }
+
+export function getVtsToken(): string | null {
+  return readJson<{ token: string } | null>('vts-token.json', null)?.token ?? null
+}
+
+export function saveVtsToken(token: string): void {
+  writeJson('vts-token.json', { token })
+}
